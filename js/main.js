@@ -104,6 +104,20 @@ function initPhysics(gravity=10){
     groundBody.addShape(groundShape);
     groundBody.quaternion.setFromAxisAngle(new CANNON.Vec3(1,0,0),-Math.PI/2);
     physicsWorld.add(groundBody);
+
+    //invisible walls
+    let xWallSpacing = 3;
+    var leftGroundBody = new CANNON.Body({ mass: 0 });
+    leftGroundBody.addShape(groundShape);
+    leftGroundBody.position.set(xWallSpacing,0,0);
+    leftGroundBody.quaternion.setFromAxisAngle(new CANNON.Vec3(0,1,0),-Math.PI/2);
+    physicsWorld.add(leftGroundBody);
+
+    var rightGroundBody = new CANNON.Body({ mass: 0 });
+    rightGroundBody.addShape(groundShape);
+    rightGroundBody.position.set(-xWallSpacing,0,0);
+    rightGroundBody.quaternion.setFromAxisAngle(new CANNON.Vec3(0,1,0),-3*Math.PI/2);
+    physicsWorld.add(leftGroundBody);
 }
 
 
@@ -138,6 +152,12 @@ function rollCube(rotationSpeed=10){
     if(pos.y < 3){ //don't allow people to keep tapping forever until it goes offscreen
         cubePhysicsBody.velocity.set(0,6,0);   
     }
+
+    //add a small force to nudge the cube back into the center
+
+    cubePhysicsBody.velocity.x -= pos.x/2;
+    cubePhysicsBody.velocity.z -= pos.z/2;
+
     //let rotationSpeed = 10;
     cubePhysicsBody.angularVelocity.set(bigRandomNumber(rotationSpeed),
         bigRandomNumber(rotationSpeed),
