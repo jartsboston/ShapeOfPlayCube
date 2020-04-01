@@ -15,7 +15,7 @@ function ThreeasyEnvironment(canvasElem = null){
 
 
 	
-	this.scene = new Physijs.Scene();
+	this.scene = new THREE.Scene();
 	this.scene.add(this.camera);
 
 	//renderer
