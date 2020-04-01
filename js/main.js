@@ -8,12 +8,25 @@ function setup() {
 	three.camera.position.y = 1;
 
     //lighting
-	three.scene.add( new THREE.AmbientLight( 0x777777 ) );
+	three.scene.add( new THREE.AmbientLight( 0x999999 ) );
 
     light = new THREE.DirectionalLight( 0xffffff, 1.75 );
     var d = 20;
     light.position.set( d, d, d );
+	light.target.position.set( 0, 0, 0 );
+ 
+    three.renderer.shadowMapEnabled = true;
     light.castShadow = true;
+    var d = 5;
+
+    light.shadowCameraLeft = -d;
+    light.shadowCameraRight = d;
+    light.shadowCameraTop = d+5;
+    light.shadowCameraBottom = -d;
+    light.shadowCameraNear = 1;
+    light.shadowCameraFar = 50;
+    light.shadowMapWidth = 2048;
+    light.shadowMapHeight = 2048;
 	three.scene.add( light );
 
     setup3DEnvironment();
@@ -23,6 +36,7 @@ function setup() {
     //console.log("===DEBUG: rolling instantly");
     //rollCube();
 
+    three.clock.getDelta(); //reset clock 
     three.on("update", update);
 }
 
@@ -30,17 +44,18 @@ function update(time){
     updatePhysics(time.delta);
 }
 
-
+let floorMesh = null;
 function setup3DEnvironment(){
 
 
 	var floorTexture = new THREE.ImageUtils.loadTexture( 'grid.png' );
 	floorTexture.wrapS = floorTexture.wrapT = THREE.RepeatWrapping; 
 	floorTexture.repeat.set( 10, 10 );
-	var floorMaterial = new THREE.MeshBasicMaterial( {color: 0xeeeeee, side: THREE.DoubleSide } );
+	var floorMaterial = new THREE.MeshPhongMaterial( {color: 0x959595, side: THREE.DoubleSide } );
 	var floorGeometry = new THREE.PlaneGeometry(100, 100, 10, 10);
-    var floorMesh = new THREE.Mesh(floorGeometry, floorMaterial, 0);
+    floorMesh = new THREE.Mesh(floorGeometry, floorMaterial);
     floorMesh.quaternion.setFromAxisAngle(new CANNON.Vec3(1,0,0),-Math.PI/2);
+    floorMesh.receiveShadow = true;
     three.scene.add(floorMesh);
 
 
@@ -55,7 +70,10 @@ function setup3DEnvironment(){
     var cubeMaterial = new THREE.MeshLambertMaterial({color: 0x654321});
 
     cubeMesh = new THREE.Mesh( new THREE.CubeGeometry(1,1,1), cubeMaterial );
+    cubeMesh.castShadow = true;
     three.scene.add( cubeMesh );
+
+    
 }
 
 let cubePhysicsBody = null;
