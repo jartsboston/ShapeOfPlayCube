@@ -16,7 +16,7 @@ function setup() {
 	three.scene.add( light );
 
     setup3DEnvironment();
-    initPhysics();
+    initPhysics(gravity=5);
     setupListeners();
 
     console.log("===DEBUG: rolling instantly");
@@ -39,6 +39,7 @@ function setup3DEnvironment(){
 	var floorMaterial = new THREE.MeshBasicMaterial( { map: floorTexture, side: THREE.DoubleSide } );
 	var floorGeometry = new THREE.PlaneGeometry(100, 100, 10, 10);
     var floorMesh = new THREE.Mesh(floorGeometry, floorMaterial, 0);
+    floorMesh.quaternion.setFromAxisAngle(new CANNON.Vec3(1,0,0),-Math.PI/2);
     three.scene.add(floorMesh);
 
 
@@ -92,9 +93,26 @@ function updatePhysics(dt){
     cubeMesh.quaternion.copy(cubePhysicsBody.quaternion);
 }
 
-function rollCube(){
+function bigRandomNumber(size){
+    //roll a random number, but more weighted towards bigger numbers
+    let randomNumber = Math.random()*size - size/2;
+    randomNumber += Math.sign(randomNumber)* size/2;
+    return randomNumber;
+}
+
+function rollCube(rotationSpeed=10){
     // Change the object's position
     //cubePhysicsBody 
+
+    let pos = cubePhysicsBody.position.clone();
+    if(pos.y < 0.1)pos.y = 0.1;
+    cubePhysicsBody.position.copy(pos); 
+
+    cubePhysicsBody.velocity.set(0,4,0);   
+    //let rotationSpeed = 10;
+    cubePhysicsBody.angularVelocity.set(bigRandomNumber(rotationSpeed),
+        bigRandomNumber(rotationSpeed),
+        bigRandomNumber(rotationSpeed));
 }
 
 

@@ -3,7 +3,7 @@ function ThreeasyEnvironment(canvasElem = null){
     this.shouldCreateCanvas = (canvasElem === null);
 
     //fov, aspect, near, far
-	this.camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.1, 10000000 );
+	this.camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.01, 1000 );
 	//this.camera = new THREE.OrthographicCamera( 70, window.innerWidth / window.innerHeight, 0.1, 10 );
 
 	this.camera.position.set(0, 0, 10);
