@@ -8,9 +8,9 @@ function setup() {
 	three.camera.position.y = 1;
 
     //lighting
-	three.scene.add( new THREE.AmbientLight( 0x999999 ) );
+	three.scene.add( new THREE.AmbientLight( 0xcccccc ) );
 
-    light = new THREE.DirectionalLight( 0xffffff, 1.75 );
+    light = new THREE.DirectionalLight( 0xffffee, 0.4 );
     var d = 20;
     light.position.set( d, d, d );
 	light.target.position.set( 0, 0, 0 );
@@ -23,11 +23,17 @@ function setup() {
     light.shadowCameraRight = d;
     light.shadowCameraTop = d+5;
     light.shadowCameraBottom = -d;
-    light.shadowCameraNear = 1;
+    light.shadowCameraNear = 20;
     light.shadowCameraFar = 50;
     light.shadowMapWidth = 2048;
     light.shadowMapHeight = 2048;
 	three.scene.add( light );
+
+    let light2 = new THREE.SpotLight( 0xffffff, 0.5 );
+    var d2 = 20;
+    light2.position.set( -d2, d2, d2 );
+	light2.target.position.set( 0, 0, 0 );
+	three.scene.add( light2 );
 
     setup3DEnvironment();
     initPhysics();
@@ -51,7 +57,7 @@ function setup3DEnvironment(){
 	var floorTexture = new THREE.ImageUtils.loadTexture( 'grid.png' );
 	floorTexture.wrapS = floorTexture.wrapT = THREE.RepeatWrapping; 
 	floorTexture.repeat.set( 10, 10 );
-	var floorMaterial = new THREE.MeshPhongMaterial( {color: 0x959595, side: THREE.DoubleSide } );
+	var floorMaterial = new THREE.MeshPhongMaterial( {color: 0xb5b5b5, shininess: 0.1, side: THREE.DoubleSide } );
 	var floorGeometry = new THREE.PlaneGeometry(100, 100, 10, 10);
     floorMesh = new THREE.Mesh(floorGeometry, floorMaterial);
     floorMesh.quaternion.setFromAxisAngle(new CANNON.Vec3(1,0,0),-Math.PI/2);
@@ -64,7 +70,7 @@ function setup3DEnvironment(){
 	var materialArray = [];
     let imagePrefix = "img/box", imageSuffix=".png";
 	for (var i = 0; i < 6; i++)
-		materialArray.push( new THREE.MeshPhongMaterial({map: THREE.ImageUtils.loadTexture( imagePrefix + (i) + imageSuffix )}));
+		materialArray.push( new THREE.MeshPhongMaterial({map: THREE.ImageUtils.loadTexture( imagePrefix + (i+1) + imageSuffix )}));
 	var cubeMaterial = new THREE.MeshFaceMaterial( materialArray );
     //var cubeMaterial = new THREE.MeshLambertMaterial({color: 0x654321});
 
@@ -117,6 +123,13 @@ function initPhysics(gravity=10){
     rightGroundBody.position.set(-xWallSpacing,0,0);
     rightGroundBody.quaternion.setFromAxisAngle(new CANNON.Vec3(0,1,0),-3*Math.PI/2);
     physicsWorld.add(leftGroundBody);
+
+
+    var frontOfCameraBody = new CANNON.Body({ mass: 0 });
+    frontOfCameraBody.addShape(groundShape);
+    frontOfCameraBody.position.set(0,0,three.camera.position.z-0.5);
+    frontOfCameraBody.quaternion.setFromAxisAngle(new CANNON.Vec3(0,1,0),Math.PI);
+    physicsWorld.add(frontOfCameraBody);
 }
 
 
