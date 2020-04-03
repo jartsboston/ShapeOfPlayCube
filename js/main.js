@@ -59,15 +59,14 @@ function setup3DEnvironment(){
     three.scene.add(floorMesh);
 
 
-    /*
+    
     //assemble images for faces of cube
 	var materialArray = [];
-    let imagePrefix = "box", imageSuffix=".png";
+    let imagePrefix = "img/box", imageSuffix=".png";
 	for (var i = 0; i < 6; i++)
-		materialArray.push( new THREE.MeshPhongMaterial({map: THREE.ImageUtils.loadTexture( imagePrefix + directions[i] + imageSuffix )}));
+		materialArray.push( new THREE.MeshPhongMaterial({map: THREE.ImageUtils.loadTexture( imagePrefix + (i) + imageSuffix )}));
 	var cubeMaterial = new THREE.MeshFaceMaterial( materialArray );
-    */
-    var cubeMaterial = new THREE.MeshLambertMaterial({color: 0x654321});
+    //var cubeMaterial = new THREE.MeshLambertMaterial({color: 0x654321});
 
     cubeMesh = new THREE.Mesh( new THREE.CubeGeometry(1,1,1), cubeMaterial );
     cubeMesh.castShadow = true;
