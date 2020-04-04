@@ -139,9 +139,17 @@ function updatePhysics(dt){
     //floatier jumps - half gravity at peak of jump
     if(cubePhysicsBody.position.y > 1.5){
         physicsWorld.gravity.set(0,gravity/2,0);
+
+        if(cubePhysicsBody.position.y > 5){
+            //if box flies too far, reset it
+            cubePhysicsBody.position.set(0,0.55,0);
+            cubePhysicsBody.velocity.set(0,0.0,0);
+        }
+
     }else{
         physicsWorld.gravity.set(0,gravity,0);
     }
+    detectIfCubeIsRolled();
 }
 
 function bigRandomNumber(size){

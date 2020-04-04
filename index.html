@@ -13,10 +13,6 @@
   <link type="text/css" href="./style.css" rel="stylesheet" />
   <link type="text/css" href="./bulma.css" rel="stylesheet" />
 
-  <style>
-
-  </style>
-
   <meta name="viewport" content="initial-scale=1, maximum-scale=1">
 
 </head>
@@ -29,45 +25,45 @@
         <div class="fullscreen text willFadeOutFromJS" id="splashpage">
 
             <header class="header">Shape of Play</header>
-            <p>PLAY at your Passover seder. Take turns rolling and answering the questions!</p>
+            <p>Play at your Passover seder. Take turns rolling and answering the questions!</p>
             <br /><br />
             <div id="click">Click to roll</div>
         </div>
 
-        <div id="when" class="fullscreen columns is-mobile willFadeInFromJS">
+        <div id="when" class="question fullscreen columns is-mobile willFadeInFromJS">
             <div class="column">
                 <div class="interrogativeAdverb" style="color:yellow">WHEN</div>
                 <div class="questionRest">do you feel free to play?</div>
+                <button class="button" onclick="rollAgain()">Roll again?</button>
             </div>
-            <button class="button" onclick="rollAgain()">Roll again?</button>
         </div>
-        <div id="who" class="fullscreen columns is-mobile willFadeInFromJS">
+        <div id="who" class="question fullscreen columns is-mobile willFadeInFromJS">
             <div class="column">
                 <div class="interrogativeAdverb" style="color:white">WHO</div>
                 <div class="questionRest">are you with then you feel most free and playful?</div>
-            </div>
             <button class="button" onclick="rollAgain()">Roll again?</button>
+            </div>
         </div>
-        <div id="where" class="fullscreen columns is-mobile willFadeInFromJS">
+        <div id="where" class="question fullscreen columns is-mobile willFadeInFromJS">
             <div class="column">
                 <div class="interrogativeAdverb" style="color:blue">WHERE</div>
                 <div class="questionRest">do play and freedom show up for me?</div>
+                <button class="button" onclick="rollAgain()">Roll again?</button>
             </div>
-            <button class="button" onclick="rollAgain()">Roll again?</button>
         </div>
-        <div id="why" class="fullscreen columns is-mobile willFadeInFromJS">
+        <div id="why" class="question fullscreen columns is-mobile willFadeInFromJS">
             <div class="column">
                 <div class="interrogativeAdverb" style="color:red">WHY</div>
                 <div class="questionRest">are play and freedom connected?</div>
+                <button class="button" onclick="rollAgain()">Roll again?</button>
             </div>
-            <button class="button" onclick="rollAgain()">Roll again?</button>
         </div>
-        <div id="what" class="fullscreen columns is-mobile willFadeInFromJS">
+        <div id="what" class="question fullscreen columns is-mobile willFadeInFromJS">
             <div class="column">
                 <div class="interrogativeAdverb" style="color:black">WHAT</div>
                 <div class="questionRest">does freedom/play look like for you?</div>
+                <button class="button" onclick="rollAgain()">Roll again?</button>
             </div>
-            <button class="button" onclick="rollAgain()">Roll again?</button>
         </div>
       </div>
   </div>

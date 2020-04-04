@@ -1,3 +1,16 @@
+@font-face {
+    font-family: "Aller";
+    src: url('./fonts/Aller_Rg.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "DINCondensed";
+    src: url('./fonts/DINCondensed-Bold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 
 .willFadeInFromJS{
     opacity:0; 
@@ -34,31 +47,36 @@ canvas{
 }
 
 .interrogativeAdverb{
-    font: XXXXXXXXXX;
-    font-size: 4em;
+    font-family: DINCondensed;
+    font-size: 6em;
     text-align: center;
 }
 .questionRest{
 
-    font: XXXXXXXXXX;
+    font-family: DINCondensed;
     font-size: 3em;
     text-align: center;
+    line-height: 1;
 }
 
 .text{
-    font: XXXX;
+    font-family: Aller;
     font-size: 2em;
     text-align: center;
 }
 .header{
+    font-family: DINCondensed;
     padding-top: 1em;
     font-size: 3em;
 }
-
-@media screen and (max-width: 768px) {
-.header{
-    padding-top: 0.25em;
-    font-size: 1.7em;
+.question{
+    background-color: rgba(255,255,255,0.2);
+    /* text-shadow: gray 2px 2px, gray -2px 2px, gray -2px -2px, gray 2px -2px; */
 }
 
+@media screen and (max-width: 768px) {
+    .header{
+        padding-top: 0.25em;
+        font-size: 1.7em;
+    }
 }

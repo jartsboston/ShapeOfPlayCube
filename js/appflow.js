@@ -7,26 +7,35 @@ function rollAgain(){
 }
 
 function handleClick(){
-    if(state == "splash"){
+    if(state == "splash" || state == "results"){
         rollCube(10);
         state = "waitingForLand";
         document.getElementById("splashpage").style.opacity = 0;
+        hideAllResultTexts();
     }
 
 }
-function onCollision(){
+
+function detectIfCubeIsRolled(){
     if(state == "waitingForLand"){
-        //compute collision
-
-        /*
-        //if cubeIsLanded(){
-             side = detectSideClosestToCamera();
-             sideName = sideToName[side];
-             showText(sideName);
+        if(cubePhysicsBody.position.y < 0.6 && cubePhysicsBody.velocity.almostZero(0.1) && cubePhysicsBody.angularVelocity.almostZero(0.1)){
+            //cube has landed, but wait a little longer to show results for flair
+            window.setTimeout(analyzeRollAndShowText, 500);
         }
-
-        */
     }
+}
+
+function analyzeRollAndShowText(){
+
+    /*
+    side = detectSideClosestToCamera();
+    sideName = sideToName[side];
+    showText(sideName);
+    state = 'results';*/
+
+    
+    showText('why');
+    state = 'results';
 }
 
 function hideAllResultTexts(){
@@ -41,8 +50,6 @@ function showText(sideName){
 
 
 function setupListeners(){
-    //when roll button is clicked, rollCube();
-    //when redo button is clicked
     document.body.addEventListener("click",() =>handleClick());
 
 }
