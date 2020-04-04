@@ -7,6 +7,7 @@
   <script src="./js/three.min.js"></script>
   <script src="./js/cannon.js"></script>
   <script src="./js/setupThreePhysicsScene.js"></script>
+  <script src="./js/appflow.js"></script>
   <script src="./js/main.js"></script>
 
   <link type="text/css" href="./style.css" rel="stylesheet" />
@@ -14,52 +15,60 @@
 
   <style>
 
-    #canvasContainer{
-    }
-    body{
-        margin:0;
-        background-color: #ddd;
-    }
-    *{
-        height:100%;
-    }
-
-    canvas{
-        margin: 0 auto;
-        display: block;
-        width:100%;
-        height:100%;
-        background-color: #eee;
-    }
-
-    #textArea{
-        position: absolute;
-        top: 0;
-        left: 0;
-    }
-
   </style>
 
   <meta name="viewport" content="initial-scale=1, maximum-scale=1">
 
 </head>
 <body>
-  <div class="grid">
-      <div id="canvasContainer">
-        <canvas id="canvas">
-        </canvas>
-    
-      </div> 
-      <div id="textArea">
+    <div>
+        <div id="canvasContainer">
+            <canvas id="canvas" class="fullscreen">
+            </canvas>
+        </div> 
+        <div class="fullscreen text willFadeOutFromJS" id="splashpage">
 
-            <!--
-            Shape of Play
-            click me
+            <header class="header">Shape of Play</header>
+            <p>PLAY at your Passover seder. Take turns rolling and answering the questions!</p>
+            <br /><br />
+            <div id="click">Click to roll</div>
+        </div>
 
-            result box
-
-            roll again?-->
-
+        <div id="when" class="fullscreen columns is-mobile willFadeInFromJS">
+            <div class="column">
+                <div class="interrogativeAdverb" style="color:yellow">WHEN</div>
+                <div class="questionRest">do you feel free to play?</div>
+            </div>
+            <button class="button" onclick="rollAgain()">Roll again?</button>
+        </div>
+        <div id="who" class="fullscreen columns is-mobile willFadeInFromJS">
+            <div class="column">
+                <div class="interrogativeAdverb" style="color:white">WHO</div>
+                <div class="questionRest">are you with then you feel most free and playful?</div>
+            </div>
+            <button class="button" onclick="rollAgain()">Roll again?</button>
+        </div>
+        <div id="where" class="fullscreen columns is-mobile willFadeInFromJS">
+            <div class="column">
+                <div class="interrogativeAdverb" style="color:blue">WHERE</div>
+                <div class="questionRest">do play and freedom show up for me?</div>
+            </div>
+            <button class="button" onclick="rollAgain()">Roll again?</button>
+        </div>
+        <div id="why" class="fullscreen columns is-mobile willFadeInFromJS">
+            <div class="column">
+                <div class="interrogativeAdverb" style="color:red">WHY</div>
+                <div class="questionRest">are play and freedom connected?</div>
+            </div>
+            <button class="button" onclick="rollAgain()">Roll again?</button>
+        </div>
+        <div id="what" class="fullscreen columns is-mobile willFadeInFromJS">
+            <div class="column">
+                <div class="interrogativeAdverb" style="color:black">WHAT</div>
+                <div class="questionRest">does freedom/play look like for you?</div>
+            </div>
+            <button class="button" onclick="rollAgain()">Roll again?</button>
+        </div>
       </div>
   </div>
 </body>
