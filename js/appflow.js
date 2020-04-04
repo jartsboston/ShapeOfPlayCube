@@ -11,8 +11,8 @@ function handleClick(){
         rollCube(10);
         state = "waitingForLand";
         document.getElementById("splashpage").style.opacity = 0;
-        hideAllResultTexts();
     }
+    hideAllResultTexts();
 
 }
 
@@ -25,16 +25,60 @@ function detectIfCubeIsRolled(){
     }
 }
 
+let cameraDirection = new THREE.Vector3(0,0,1);
+
+function computeSideFacingCamera(){
+
+    let vec = cubeMesh.worldToLocal(new THREE.Vector3(0,0,4));
+    let absX = Math.abs(vec.x), absY= Math.abs(vec.y),absZ = Math.abs(vec.z);
+
+    let result = "reroll";
+    if(absX > absY && absX > absZ){
+        let rerollNeeded = absY+1 > absX || absZ+1 > absX; 
+
+        maxDirection = vec.x;
+        if(vec.x > 0){
+            result = "who";
+            /*
+            //if they're too close to a corner, reroll
+            if(absY+1 > absX || absZ+1 > absX){
+                rerollToOrient(0, Math.PI/2,0);
+            }*/
+        }else{
+            result = "what";
+        }
+
+    }
+    if(absY > absX && absY > absZ){
+        maxDirection = vec.y;
+        if(vec.y > 0){
+            result = "when";
+        }else{
+            result = "where";
+        }
+    }
+    if(absZ > absY && absZ > absX){
+        maxDirection = vec.z;
+        if(vec.z > 0){
+            result = "reroll";
+        }else{
+            result =  "why";
+        }
+    }
+    return result;
+}
+
+
 function analyzeRollAndShowText(){
+    let sideName = computeSideFacingCamera();
 
-    /*
-    side = detectSideClosestToCamera();
-    sideName = sideToName[side];
+    if(sideName == "reroll"){
+        rollCube(10);
+        return;
+    }
+
+
     showText(sideName);
-    state = 'results';*/
-
-    
-    showText('why');
     state = 'results';
 }
 

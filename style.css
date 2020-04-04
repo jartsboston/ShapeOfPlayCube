@@ -70,7 +70,7 @@ canvas{
     font-size: 3em;
 }
 .question{
-    background-color: rgba(255,255,255,0.2);
+    background-color: rgba(255,255,255,0.5);
     /* text-shadow: gray 2px 2px, gray -2px 2px, gray -2px -2px, gray 2px -2px; */
 }
 
