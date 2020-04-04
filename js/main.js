@@ -76,9 +76,7 @@ function setup3DEnvironment(){
 
     cubeMesh = new THREE.Mesh( new THREE.CubeGeometry(1,1,1), cubeMaterial );
     cubeMesh.castShadow = true;
-    three.scene.add( cubeMesh );
-
-    
+    three.scene.add( cubeMesh );   
 }
 
 let cubePhysicsBody = null;
@@ -174,15 +172,6 @@ function rollCube(rotationSpeed=10){
     cubePhysicsBody.angularVelocity.set(bigRandomNumber(rotationSpeed),
         bigRandomNumber(rotationSpeed),
         bigRandomNumber(rotationSpeed/2));
-}
-
-
-
-function setupListeners(){
-    //when roll button is clicked, rollCube();
-    //when redo button is clicked
-    document.body.addEventListener("click",() =>rollCube(10));
-
 }
 
 window.addEventListener("load",function(){
