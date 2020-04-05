@@ -136,6 +136,11 @@ function updatePhysics(dt){
     cubeMesh.position.copy(cubePhysicsBody.position);
     cubeMesh.quaternion.copy(cubePhysicsBody.quaternion);
 
+
+    if(cubePhysicsBody.position.y < 0.49){
+        cubePhysicsBody.position.y = 0.5; //don't clip through floor
+    }
+
     //floatier jumps - half gravity at peak of jump
     if(cubePhysicsBody.position.y > 1.5){
         physicsWorld.gravity.set(0,gravity/2,0);
