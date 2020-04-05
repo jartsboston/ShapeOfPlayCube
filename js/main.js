@@ -158,6 +158,9 @@ function bigRandomNumber(size){
     randomNumber += Math.sign(randomNumber)* size/2;
     return randomNumber;
 }
+function smolRandomNumber(size){
+    return bigRandomNumber(size/2);
+}
 
 function rollCube(rotationSpeed=10){
     // Change the object's position
@@ -177,9 +180,13 @@ function rollCube(rotationSpeed=10){
     cubePhysicsBody.velocity.z -= pos.z/2;
 
     //let rotationSpeed = 10;
-    cubePhysicsBody.angularVelocity.set(bigRandomNumber(rotationSpeed),
-        bigRandomNumber(rotationSpeed),
-        bigRandomNumber(rotationSpeed/2));
+
+    let angularVelocity = [smolRandomNumber(rotationSpeed),
+        smolRandomNumber(rotationSpeed),
+        smolRandomNumber(rotationSpeed)];
+    angularVelocity[Math.floor(Math.random()*2.99)] = bigRandomNumber(rotationSpeed); //make one axis faster
+
+    cubePhysicsBody.angularVelocity.set(...angularVelocity);
 }
 
 window.addEventListener("load",function(){

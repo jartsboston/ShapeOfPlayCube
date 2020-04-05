@@ -16,11 +16,13 @@ function handleClick(){
 
 }
 
+let timeout = 0;
 function detectIfCubeIsRolled(){
     if(state == "waitingForLand"){
         if(cubePhysicsBody.position.y < 0.6 && cubePhysicsBody.velocity.almostZero(0.1) && cubePhysicsBody.angularVelocity.almostZero(0.1)){
             //cube has landed, but wait a little longer to show results for flair
-            window.setTimeout(analyzeRollAndShowText, 500);
+            //clearTimeout(timeout);
+            timeout = window.setTimeout(analyzeRollAndShowText, 500);
         }
     }
 }
@@ -34,8 +36,6 @@ function computeSideFacingCamera(){
 
     let result = "reroll";
     if(absX > absY && absX > absZ){
-        let rerollNeeded = absY+1 > absX || absZ+1 > absX; 
-
         maxDirection = vec.x;
         if(vec.x > 0){
             result = "who";
@@ -70,13 +70,13 @@ function computeSideFacingCamera(){
 
 
 function analyzeRollAndShowText(){
+    if(state != "waitingForLand")return;
     let sideName = computeSideFacingCamera();
 
     if(sideName == "reroll"){
-        rollCube(10);
+        rollCube(5);
         return;
     }
-
 
     showText(sideName);
     state = 'results';
