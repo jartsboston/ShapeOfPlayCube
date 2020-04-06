@@ -131,10 +131,10 @@ function initPhysics(gravity=10){
 }
 
 
+let leftoverTime = 0;
 function updatePhysics(dt){
     if(dt >= 1)dt = 1;
 
-    physicsWorld.step(dt);
     cubeMesh.position.copy(cubePhysicsBody.position);
     cubeMesh.quaternion.copy(cubePhysicsBody.quaternion);
 
@@ -156,6 +156,14 @@ function updatePhysics(dt){
     }else{
         physicsWorld.gravity.set(0,gravity,0);
     }
+
+    dt += leftoverTime;
+    while(dt > 1/60){
+        physicsWorld.step(1/60);
+        dt -= 1/60;
+    }
+    leftoverTime = dt;
+
     detectIfCubeIsRolled();
 }
 
