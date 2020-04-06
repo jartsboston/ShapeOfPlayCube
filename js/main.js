@@ -132,6 +132,8 @@ function initPhysics(gravity=10){
 
 
 function updatePhysics(dt){
+
+    if(dt >= 1000)dt = 1000;
     physicsWorld.step(dt);
     cubeMesh.position.copy(cubePhysicsBody.position);
     cubeMesh.quaternion.copy(cubePhysicsBody.quaternion);
