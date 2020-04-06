@@ -48,13 +48,13 @@ canvas{
 
 .interrogativeAdverb{
     font-family: DINCondensed;
-    font-size: 6em;
+    font-size: 3em;
     text-align: center;
 }
 .questionRest{
 
     font-family: DINCondensed;
-    font-size: 3em;
+    font-size: 1.5em;
     text-align: center;
     line-height: 1;
 }
@@ -63,16 +63,49 @@ canvas{
     font-family: Aller;
     font-size: 2em;
     text-align: center;
+    pointer-events: none;
 }
 .header{
     font-family: DINCondensed;
     padding-top: 1em;
     font-size: 3em;
+    pointer-events: none;
 }
 .question{
+    font-size: 2em;
     background-color: rgba(255,255,255,0.5);
         display: flex;
+    pointer-events: none;
     /* text-shadow: gray 2px 2px, gray -2px 2px, gray -2px -2px, gray 2px -2px; */
+}
+
+.buttonContainer{
+    justify-content: center;
+}
+
+.clickButton{
+    padding: 0.5em;
+    border-radius: 16px;
+    border: 3px solid rgba(200,200,200,0.3);
+    background-color: rgba(255,255,255,1);
+}
+.clickButton:hover{
+    background-color: #00c4a7;
+    color: white;
+}
+.clickButton:focus{
+    background-color: #00c4a7;
+    color: white;
+}
+.questionButton{
+    padding-top: 20vh;
+}
+#splashpage{
+    pointer-events: all;
+}
+.columns{ /*fix bulma causing weird scrollbars */
+    margin-left: 0;
+    margin-right: 0;
 }
 
 @media screen and (max-width: 768px) {

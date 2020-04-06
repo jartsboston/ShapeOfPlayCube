@@ -27,42 +27,68 @@
             <header class="header">Shape of Play</header>
             <p>Play at your Passover seder. Take turns rolling and answering the questions!</p>
             <br /><br />
-            <div id="click">Click to roll</div>
+            <div id="centerContainer" class="buttonContainer columns is-mobile">
+                <div class="clickButton">Click to roll</div>
+            </div>
         </div>
 
         <div id="when" class="question fullscreen columns is-mobile willFadeInFromJS">
             <div class="column">
-                <div class="interrogativeAdverb" style="color:yellow">WHEN</div>
+                <div class="interrogativeAdverb" style="color:yellow; text-shadow: gray 2px 2px, gray -2px 2px, gray -2px -2px, gray 2px -2px;">WHEN</div>
                 <div class="questionRest">do you feel free to play?</div>
-                <button class="button" onclick="rollAgain()">Roll again?</button>
+                <br /><br />
+                <div id="centerContainer" class="columns is-mobile buttonContainer questionButton">
+                    <div class="clickButton">Roll again?</div>
+                </div>
             </div>
         </div>
         <div id="who" class="question fullscreen columns is-mobile willFadeInFromJS">
             <div class="column">
                 <div class="interrogativeAdverb" style="color:white; text-shadow: gray 2px 2px, gray -2px 2px, gray -2px -2px, gray 2px -2px;">WHO</div>
                 <div class="questionRest">are you with when you feel most free and playful?</div>
-            <button class="button" onclick="rollAgain()">Roll again?</button>
+                <br /><br />
+                <div id="centerContainer" class="columns is-mobile buttonContainer questionButton">
+                    <div class="clickButton">Roll again?</div>
+                </div>
             </div>
         </div>
         <div id="where" class="question fullscreen columns is-mobile willFadeInFromJS">
             <div class="column">
                 <div class="interrogativeAdverb" style="color:blue">WHERE</div>
                 <div class="questionRest">do play and freedom show up for me?</div>
-                <button class="button" onclick="rollAgain()">Roll again?</button>
+                <br /><br />
+                <div id="centerContainer" class="columns is-mobile buttonContainer questionButton">
+                    <div class="clickButton">Roll again?</div>
+                </div>
             </div>
         </div>
         <div id="why" class="question fullscreen columns is-mobile willFadeInFromJS">
             <div class="column">
                 <div class="interrogativeAdverb" style="color:red">WHY</div>
                 <div class="questionRest">are play and freedom connected?</div>
-                <button class="button" onclick="rollAgain()">Roll again?</button>
+                <br /><br />
+                <div id="centerContainer" class="columns is-mobile buttonContainer questionButton">
+                    <div class="clickButton">Roll again?</div>
+                </div>
             </div>
         </div>
         <div id="what" class="question fullscreen columns is-mobile willFadeInFromJS">
             <div class="column">
                 <div class="interrogativeAdverb" style="color:black">WHAT</div>
                 <div class="questionRest">does freedom/play look like for you?</div>
-                <button class="button" onclick="rollAgain()">Roll again?</button>
+                <br /><br />
+                <div id="centerContainer" class="columns is-mobile buttonContainer questionButton">
+                    <div class="clickButton">Roll again?</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="reroll" class="question fullscreen columns is-mobile willFadeInFromJS">
+            <div class="column">
+                <div class="questionRest">Try again!</div>
+                <div id="centerContainer" class="columns is-mobile buttonContainer questionButton">
+                    <div class="clickButton">Click to reroll!</div>
+                </div>
             </div>
         </div>
       </div>

@@ -11,6 +11,7 @@ function handleClick(){
         rollCube(10);
         state = "waitingForLand";
         document.getElementById("splashpage").style.opacity = 0;
+        document.getElementById("splashpage").style.pointerEvents = "none";
     }
     hideAllResultTexts();
 
@@ -73,23 +74,20 @@ function analyzeRollAndShowText(){
     if(state != "waitingForLand")return;
     let sideName = computeSideFacingCamera();
 
-    if(sideName == "reroll"){
-        rollCube(5);
-        return;
-    }
-
-    showText(sideName);
     state = 'results';
+    showText(sideName);
 }
 
 function hideAllResultTexts(){
-    for(let adverb of ['who','what','why','when','where']){
+    for(let adverb of ['who','what','why','when','where','reroll']){
         document.getElementById(adverb).style.opacity = 0;
+        document.getElementById(adverb).style.pointerEvents = "none";
     }
 }
 
 function showText(sideName){
         document.getElementById(sideName).style.opacity = 1;
+        document.getElementById(sideName).style.pointerEvents = "all";
 }
 
 
