@@ -132,8 +132,10 @@ function initPhysics(gravity=10){
 
 
 function updatePhysics(dt){
+    console.log(dt);
 
-    if(dt >= 1000)dt = 1000;
+    if(dt >= 1)dt = 1;
+
     physicsWorld.step(dt);
     cubeMesh.position.copy(cubePhysicsBody.position);
     cubeMesh.quaternion.copy(cubePhysicsBody.quaternion);
@@ -147,9 +149,9 @@ function updatePhysics(dt){
     if(cubePhysicsBody.position.y > 1.5){
         physicsWorld.gravity.set(0,gravity/2,0);
 
-        if(cubePhysicsBody.position.y > 5){
+        if(cubePhysicsBody.position.y > 5 || Math.abs(cubePhysicsBody.position.x) > 6 || Math.abs(cubePhysicsBody.position.z) > 6){
             //if box flies too far, reset it
-            cubePhysicsBody.position.set(0,0.55,0);
+            cubePhysicsBody.position.set(0,0.6,0);
             cubePhysicsBody.velocity.set(0,0.0,0);
         }
 
