@@ -96,10 +96,11 @@ function initPhysics(gravity=10){
     boxShape = new CANNON.Box(new CANNON.Vec3(0.5,0.5,0.5));
     cubePhysicsBody = new CANNON.Body({ mass: mass });
     cubePhysicsBody.addShape(boxShape);
-    cubePhysicsBody.position.set(0,0.50003,0);
+    cubePhysicsBody.position.set(0,0.60003,0);
     physicsWorld.add(cubePhysicsBody);
     cubePhysicsBody.velocity.setZero();
     cubePhysicsBody.angularVelocity.setZero();
+    cubePhysicsBody.linearDamping = 0.1;
 
     // Create a plane
     var groundShape = new CANNON.Plane();
@@ -139,7 +140,7 @@ function updatePhysics(dt){
     cubeMesh.quaternion.copy(cubePhysicsBody.quaternion);
 
 
-    if(cubePhysicsBody.position.y < -1.1){
+    if(cubePhysicsBody.position.y < -2){
         cubePhysicsBody.position.y = 0.6; //don't clip through floor
     }
 
@@ -150,12 +151,19 @@ function updatePhysics(dt){
         if(cubePhysicsBody.position.y > 5 || Math.abs(cubePhysicsBody.position.x) > 6 || Math.abs(cubePhysicsBody.position.z) > 6){
             //if box flies too far, reset it
             cubePhysicsBody.position.set(0,0.6,0);
-            cubePhysicsBody.velocity.set(0,0.0,0);
+            cubePhysicsBody.velocity.set(0,0.0,0); 
+            cubePhysicsBody.quaternion.set(0,0,0,1);
         }
 
     }else{
         physicsWorld.gravity.set(0,gravity,0);
+        cubePhysicsBody.angularDamping = 0.5;
     }
+
+    if(cubePhysicsBody.velocity.y > 0.1){
+        cubePhysicsBody.angularDamping = 0.01;
+    }
+
 
     dt += leftoverTime;
     while(dt > 1/60){
