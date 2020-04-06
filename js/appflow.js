@@ -93,5 +93,6 @@ function showText(sideName){
 
 function setupListeners(){
     document.body.addEventListener("click",() =>handleClick());
+    document.body.addEventListener("touchstart",() =>handleClick());
 
 }
