@@ -132,8 +132,6 @@ function initPhysics(gravity=10){
 
 
 function updatePhysics(dt){
-    console.log(dt);
-
     if(dt >= 1)dt = 1;
 
     physicsWorld.step(dt);
@@ -141,8 +139,8 @@ function updatePhysics(dt){
     cubeMesh.quaternion.copy(cubePhysicsBody.quaternion);
 
 
-    if(cubePhysicsBody.position.y < 0.3){
-        cubePhysicsBody.position.y = 0.51; //don't clip through floor
+    if(cubePhysicsBody.position.y < -1.1){
+        cubePhysicsBody.position.y = 0.6; //don't clip through floor
     }
 
     //floatier jumps - half gravity at peak of jump
